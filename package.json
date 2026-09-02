@@ -1,0 +1,42 @@
+{
+  "name": "global-dispatch-news",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "vinext dev",
+    "build": "vinext build",
+    "start": "wrangler dev --config dist/server/wrangler.json",
+    "lint": "eslint app components data lib eslint.config.mjs next.config.mjs postcss.config.mjs vite.config.mjs",
+    "test": "npm run lint && npm run build && node --test tests/project.test.mjs"
+  },
+  "dependencies": {
+    "next": "16.2.11",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-server-dom-webpack": "19.2.8",
+    "vinext": "1.0.0-beta.8"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@cloudflare/workers-types": "4.20260515.1",
+    "@openai/sites-vite-plugin": "0.2.0",
+    "@tailwindcss/postcss": "4.2.1",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.34",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.11",
+    "tailwindcss": "4.2.1",
+    "vite": "8.0.16",
+    "wrangler": "4.92.0"
+  },
+  "overrides": {
+    "nanoid": "3.3.18",
+    "postcss": "8.5.26",
+    "sharp": "0.35.4"
+  },
+  "type": "module",
+  "displayName": "The Global Dispatch"
+}

@@ -1,0 +1,70 @@
+{
+  "authors": [
+    {
+      "slug": "global-affairs-editor",
+      "name": "Global Affairs Editor",
+      "role": "Collective topic editor",
+      "beat": "Diplomacy, conflict and global institutions",
+      "location": "Independent blog",
+      "image": "/images/editors/global-affairs-editor.webp",
+      "bio": "The Global Affairs Editor synthesizes public records, credible research and reputable coverage, distinguishing established developments from claims and making material uncertainty visible.",
+      "social": {},
+      "kind": "editorial_team"
+    },
+    {
+      "slug": "public-life-editor",
+      "name": "Public Life Editor",
+      "role": "Collective topic editor",
+      "beat": "Elections, courts and public policy",
+      "location": "Independent blog",
+      "image": "/images/editors/public-life-editor.webp",
+      "bio": "The Public Life Editor reads the orders, filings, legislation and official data behind political claims, then explains what changed, what did not and what comes next.",
+      "social": {},
+      "kind": "editorial_team"
+    },
+    {
+      "slug": "technology-science-editor",
+      "name": "Technology & Science Editor",
+      "role": "Collective topic editor",
+      "beat": "Cybersecurity, AI and evidence",
+      "location": "Independent blog",
+      "image": "/images/editors/technology-science-editor.webp",
+      "bio": "The Technology & Science Editor tests technical claims against standards, advisories and original research, with practical guidance and explicit limits on what the evidence supports.",
+      "social": {},
+      "kind": "editorial_team"
+    },
+    {
+      "slug": "security-diplomacy-editor",
+      "name": "Security & Diplomacy Editor",
+      "role": "Collective topic editor",
+      "beat": "Security, migration and diplomacy",
+      "location": "Independent blog",
+      "image": "/images/editors/security-diplomacy-editor.webp",
+      "bio": "The Security & Diplomacy Editor connects fast-moving events to official records and regional context while avoiding certainty that the available evidence cannot support.",
+      "social": {},
+      "kind": "editorial_team"
+    },
+    {
+      "slug": "business-culture-editor",
+      "name": "Business & Culture Editor",
+      "role": "Collective topic editor",
+      "beat": "Markets, culture and everyday systems",
+      "location": "Independent blog",
+      "image": "/images/editors/business-culture-editor.webp",
+      "bio": "The Business & Culture Editor follows the money, incentives and lived consequences behind economic and cultural change. Market commentary is information, not investment advice.",
+      "social": {},
+      "kind": "editorial_team"
+    },
+    {
+      "slug": "sources-standards-editor",
+      "name": "Sources & Standards Editor",
+      "role": "Collective topic editor",
+      "beat": "Verification, corrections and public records",
+      "location": "Independent blog",
+      "image": "/images/editors/sources-standards-editor.webp",
+      "bio": "The Sources & Standards Editor maintains sourcing, update and correction practices across the blog and reviews consequential legal and accountability analysis against the public record.",
+      "social": {},
+      "kind": "editorial_team"
+    }
+  ]
+}
