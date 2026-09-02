@@ -128,3 +128,14 @@ test("site-wide social preview uses the publication card", async () => {
   assert.match(layout, /\/og\.png/);
   assert.match(layout, /Evidence\. Context\. Consequence\./);
 });
+
+test("Vercel uses the native Next.js build while Sites keeps Vinext", async () => {
+  const packageJson = JSON.parse(await readFile(path.join(projectRoot, "package.json"), "utf8"));
+  const vercel = JSON.parse(await readFile(path.join(projectRoot, "vercel.json"), "utf8"));
+
+  assert.equal(packageJson.engines.node, "22.x");
+  assert.equal(packageJson.scripts.build, "vinext build");
+  assert.equal(packageJson.scripts["build:vercel"], "next build");
+  assert.equal(vercel.framework, "nextjs");
+  assert.equal(vercel.buildCommand, "npm run build:vercel");
+});
