@@ -5,6 +5,7 @@ export default function sitemap() {
   const staticPages = [
     { url: siteConfig.url, lastModified: new Date(), changeFrequency: "daily", priority: 1 },
     { url: `${siteConfig.url}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    ...["contact", "editorial-standards", "corrections", "privacy", "terms"].map((page) => ({ url: `${siteConfig.url}/${page}`, lastModified: new Date("2026-09-04"), changeFrequency: "yearly", priority: 0.4 })),
   ];
   const categoryPages = categories.map((category) => ({
     url: `${siteConfig.url}/${category}`,

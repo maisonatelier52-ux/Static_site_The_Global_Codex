@@ -1,14 +1,13 @@
-# The Global Dispatch
+# Business Standard
 
-An evidence-based global affairs blog built around visible sources, useful context, and transparent review standards.
+A publish-ready U.S.-focused news site for [BusinessStandard.org](https://www.businessstandard.org/), built around visible sources, useful context, and transparent review standards.
 
 ## Editorial model
 
-- 48 posts with unique identities, review dates, takeaways, and source links
-- 16 sourced analyses grounded in named primary documents and reputable coverage
-- 32 evidence guides that replace unsupported demonstration stories
+- 90 articles across nine categories, with ten stories per category
+- 54 sourced news analyses and 36 evidence-led explainers
 - Transparent collective topic-editor labels instead of invented personal bylines
-- A visible format label, source panel, corrections note, and structured BlogPosting metadata on every post
+- A visible format label, source panel, corrections note, and structured NewsArticle metadata on every story
 - A standards page that explains sourcing, uncertainty, updates, and prototype limitations
 
 The site synthesizes publicly available sources and does not claim original reporting unless a post explicitly says otherwise. Source links should be rechecked before later republication because external records can change.
@@ -41,7 +40,7 @@ app/                  Routes and editorial layouts
 components/           Reusable story and navigation components
 data/news.js           Normalized article data and helpers
 public/data/           Article and editorial-desk records
-public/og.png          Publication social preview
+public/og/             Home, about and category social previews
 tests/                 Dataset and authority checks
 .openai/hosting.json   Sites project binding
 ```

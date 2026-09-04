@@ -13,17 +13,17 @@ export const metadata = {
   description: siteConfig.description,
   openGraph: {
     type: "website",
-    title: `${siteConfig.name} — Evidence. Context. Consequence.`,
+    title: `${siteConfig.name} — Independent news for an informed America`,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    images: [{ url: `${siteConfig.url}/og.png`, width: 1731, height: 909, alt: `${siteConfig.name} — Evidence. Context. Consequence.` }],
+    images: [{ url: `${siteConfig.url}/og/home.png`, width: 1200, height: 630, alt: `${siteConfig.name} — Independent news for an informed America` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — Evidence. Context. Consequence.`,
+    title: `${siteConfig.name} — Independent news for an informed America`,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/og.png`],
+    images: [`${siteConfig.url}/og/home.png`],
   },
   icons: {
     icon: "/favicon.svg",

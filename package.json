@@ -1,5 +1,5 @@
 {
-  "name": "global-dispatch-news",
+  "name": "businessstandard-org-news",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -39,5 +39,5 @@
     "sharp": "0.35.4"
   },
   "type": "module",
-  "displayName": "The Global Dispatch"
+  "displayName": "Business Standard"
 }

@@ -58,7 +58,7 @@ export default async function ArticlePage({ params }) {
   const tags = Array.from(new Set([label, article.eyebrow]));
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "NewsArticle",
     headline: article.title,
     description: article.summary,
     ...(article.image ? { image: [`${siteConfig.url}${article.image}`] } : {}),
@@ -182,7 +182,7 @@ export default async function ArticlePage({ params }) {
                 <blockquote className="relative my-[30px] px-[24px] pt-[24px] pb-[20px] border-l-4 border-[#7a1f2b] bg-[#f7f5f2]">
                   <span className={`block font-bold ${SERIF} text-[48px] leading-none text-[#7a1f2b]/25 -mb-[4px]`} aria-hidden="true">&ldquo;</span>
                   <p className={`m-0 text-[#1a1a1a] italic font-semibold ${SERIF} text-[18px] leading-[1.4]`}>{article.quote}</p>
-                  <cite className={`block mt-[12px] text-[#6b6b6b] text-[11.5px] ${SANS} not-italic before:content-['—_']`}>{article.newsType === "explainer" ? "Editorial principle" : "The Global Dispatch synthesis"}</cite>
+                  <cite className={`block mt-[12px] text-[#6b6b6b] text-[11.5px] ${SANS} not-italic before:content-['—_']`}>{article.newsType === "explainer" ? "Editorial principle" : "Business Standard synthesis"}</cite>
                 </blockquote>
               )}
             </section>

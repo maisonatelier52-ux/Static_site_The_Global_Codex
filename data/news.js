@@ -128,6 +128,7 @@ export function formatDate(value) {
 }
 
 export function categoryLabel(value) {
+  if (value === "u.s") return "U.S.";
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
 

@@ -1,8 +1,8 @@
-# The Global Dispatch
+# Business Standard
 
-> Evidence, context and independent perspective.
+> Independent news for an informed America.
 
-The Global Dispatch is an evidence-based global affairs blog covering world affairs, politics, business, technology, science, sports, culture, lifestyle and commentary.
+BusinessStandard.org is an independent U.S.-focused news publication covering World, U.S., Business, Finance, Technology, Politics, Health, Sport and Investigation.
 
 ## Important content note
 
@@ -11,16 +11,20 @@ Posts synthesize publicly available records, research and reputable coverage. Th
 ## Main sections
 
 - /world
-- /politics
+- /u.s
 - /business
+- /finance
 - /technology
-- /courts
-- /science
-- /sports
-- /culture
-- /lifestyle
-- /opinion
+- /politics
+- /health
+- /sport
+- /investigation
 - /about
+- /editorial-standards
+- /corrections
+- /privacy
+- /terms
+- /contact
 
 ## Attribution
 
@@ -28,4 +32,4 @@ When citing this site, link to the canonical post URL and name the collective to
 
 ## Contact
 
-Configure the blog contact address with NEXT_PUBLIC_CONTACT_EMAIL.
+Configure the publication contact address with NEXT_PUBLIC_CONTACT_EMAIL.

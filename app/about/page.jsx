@@ -4,7 +4,9 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata = {
   title: "About Us",
-  description: `Learn how ${siteConfig.name} researches, sources and edits its global-affairs blog posts.`,
+  description: `Learn how ${siteConfig.name} researches, sources and edits independent U.S.-focused news.`,
+  openGraph: { title: `About ${siteConfig.name}`, description: `How BusinessStandard.org verifies, explains and corrects its journalism.`, images: [{ url: `${siteConfig.url}/og/about.png`, width: 1200, height: 630 }] },
+  twitter: { card: "summary_large_image", images: [`${siteConfig.url}/og/about.png`] },
 };
 
 const SHELL = "w-[min(1240px,calc(100%-40px))] max-[780px]:w-[min(100%-28px,1240px)] mx-auto";
@@ -23,7 +25,7 @@ function SectionHeading({ children, action }) {
 export default function AboutPage() {
   return (
     <main id="main-content">
-      <section className="min-h-[600px] flex items-center bg-[#101c27] text-white relative overflow-hidden after:content-['G'] after:absolute after:-right-[20px] after:-bottom-[180px] after:text-white/[.035] after:font-bold after:font-['Georgia','Times_New_Roman',serif] after:text-[650px] after:leading-[.8]">
+      <section className="min-h-[600px] flex items-center bg-[#101c27] text-white relative overflow-hidden after:content-['B'] after:absolute after:-right-[20px] after:-bottom-[180px] after:text-white/[.035] after:font-bold after:font-['Georgia','Times_New_Roman',serif] after:text-[650px] after:leading-[.8]">
         <div className={`${SHELL} relative z-[1]`}>
           <nav className="flex flex-wrap gap-[9px] items-center text-[#9aa6ae] text-[13px] mb-[36px]" aria-label="Breadcrumb">
             <Link className="hover:text-[#71151f]" href="/">Home</Link><span>/</span><span>About</span>
@@ -33,7 +35,7 @@ export default function AboutPage() {
             Ideas that respect<br />your attention.
           </h1>
           <p className="max-w-[650px] ml-auto text-[#c6cdd1] font-['Georgia','Times_New_Roman',serif] text-[19px] leading-[1.6]">
-            {siteConfig.name} is an independent current-affairs blog built around a simple promise: show the evidence, explain the stakes and make uncertainty visible.
+            BusinessStandard.org is an independent U.S.-focused news publication built around a simple promise: show the evidence, explain the stakes and make uncertainty visible.
           </p>
         </div>
       </section>
@@ -52,7 +54,7 @@ export default function AboutPage() {
 
       <section className="bg-[#f5f1eb] py-[64px]" id="standards">
         <div className={SHELL}>
-          <SectionHeading action={<span>How every post earns trust</span>}><h2>Blog principles</h2></SectionHeading>
+          <SectionHeading action={<span>How every story earns trust</span>}><h2>Editorial principles</h2></SectionHeading>
           <div className="grid grid-cols-4 max-[1100px]:grid-cols-2 gap-0 border border-[#ded8d1]">
             {[
               { n: "01", t: "Evidence first", d: "Every post links its evidence trail and labels the kind of source so readers can inspect the record directly." },

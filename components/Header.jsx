@@ -47,9 +47,9 @@ export function Header({ searchItems }) {
     <header className="bg-[#fffefa] relative z-30">
       <div className="min-h-[38px] max-[780px]:justify-center flex items-center gap-[20px] border-b border-[#ded8d1] text-[#69625e] text-[10px] font-['Arial','Helvetica',sans-serif] w-[min(1240px,calc(100%-40px))] max-[780px]:w-[min(100%-28px,1240px)] mx-auto">
         <span>{dateLabel}</span>
-        <span className="pl-[20px] border-l border-[#ded8d1] max-[780px]:hidden">Edition: International</span>
+        <span className="pl-[20px] border-l border-[#ded8d1] max-[780px]:hidden">Edition: United States</span>
         <div className="ml-auto max-[780px]:hidden flex items-center gap-[14px]" aria-label="Blog trust signals">
-          <span className="text-[#1b5e4b] font-bold">48 posts source-reviewed</span>
+          <span className="text-[#1b5e4b] font-bold">90 stories source-reviewed</span>
           <Link className="hover:text-[#71151f] underline underline-offset-2" href="/about#standards">Sources & corrections</Link>
         </div>
       </div>
@@ -59,8 +59,7 @@ export function Header({ searchItems }) {
           <SocialIcon name="search" size={17} /><span className="max-[780px]:hidden">Search</span>
         </button>
         <Link className="text-center flex flex-col items-center" href="/" aria-label={`${siteConfig.name} home`}>
-          <span className="font-['Arial','Helvetica',sans-serif] text-[9px] leading-none tracking-[.42em] pl-[.42em] uppercase">The</span>
-          <span className="font-bold font-['Georgia','Times_New_Roman',serif] text-[42px] max-[780px]:text-[27px] leading-[.9] text-[#10263b] tracking-[.08em] pl-[.08em]">GLOBAL DISPATCH</span>
+          <span className="font-bold font-['Georgia','Times_New_Roman',serif] text-[42px] max-[780px]:text-[27px] leading-[.9] text-[#10263b] tracking-[.08em] pl-[.08em]">BUSINESS STANDARD</span>
           <span className="font-['Arial','Helvetica',sans-serif] text-[9px] uppercase tracking-[.22em] text-[#7a1f2b] mt-[10px] max-[780px]:hidden">{siteConfig.tagline}</span>
         </Link>
         <Link
@@ -97,7 +96,6 @@ export function Header({ searchItems }) {
               {category}
             </Link>
           ))}
-          <Link href="/about" onClick={() => setMenuOpen(false)} className="flex-none px-[19px] py-[14px] font-['Georgia','Times_New_Roman',serif] text-[14px] max-[780px]:border-b max-[780px]:border-[#ded8d1] max-[780px]:px-[9px] max-[780px]:py-[13px] hover:text-[#71151f] hover:bg-[#f8f5f1]">About</Link>
         </div>
       </nav>
 
@@ -113,7 +111,7 @@ export function Header({ searchItems }) {
         >
           <div className="w-[min(720px,calc(100%-32px))] max-h-[78vh] overflow-auto bg-[#fffefa] shadow-[0_25px_80px_rgba(0,0,0,.28)] p-[24px]">
             <div className="flex items-center justify-between mb-[18px]">
-              <span className="font-bold font-['Georgia','Times_New_Roman',serif] text-[13px] uppercase tracking-[.15em]">Search the blog</span>
+              <span className="font-bold font-['Georgia','Times_New_Roman',serif] text-[13px] uppercase tracking-[.15em]">Search Business Standard</span>
               <button className="border-0 bg-transparent cursor-pointer" onClick={() => setSearchOpen(false)} aria-label="Close search"><SocialIcon name="close" size={22} /></button>
             </div>
             <div className="flex items-center gap-[12px] px-[3px] pb-[12px] border-b-2 border-[#171515]">

@@ -7,7 +7,7 @@ import { articles, authors, categoryLabel, formatDate } from "@/data/news";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = {
-  title: `${siteConfig.name} — Evidence-Based Global Affairs Blog`,
+  title: `${siteConfig.name} — Latest U.S. and World News`,
   description: siteConfig.description,
   alternates: { canonical: siteConfig.url },
 };
@@ -18,10 +18,10 @@ const latest = articles.slice(13, 18);
 const splitLeads = articles.slice(18, 20);
 const advertisement = articles[20];
 const columnLeads = articles.slice(21, 24);
-const lifestyle = articles.slice(24, 28);
-const cultureFeature = articles[28];
+const technology = articles.filter((article) => article.category === "technology").slice(0, 4);
+const investigationFeature = articles.find((article) => article.category === "investigation");
 const moreStories = articles.slice(29, 41);
-const textStories = articles.slice(41);
+const worldStories = articles.filter((article) => article.category === "world").slice(1, 4);
 
 const SHELL = "w-[min(1240px,calc(100%-40px))] max-[780px]:w-[min(100%-28px,1240px)] mx-auto";
 const SERIF = "font-['Georgia','Times_New_Roman',serif]";
@@ -79,16 +79,16 @@ export default function Home() {
         <BreakingTicker articles={articles.slice(0, 5)} />
       </div>
 
-      <section className={`${SHELL} grid grid-cols-[minmax(0,1.6fr)_repeat(3,minmax(150px,.55fr))] max-[900px]:grid-cols-2 max-[640px]:grid-cols-1 gap-[1px] bg-[#d9d3ca] border border-[#d9d3ca] mt-[22px]`} aria-labelledby="blog-standard">
+      <section className={`${SHELL} grid grid-cols-[minmax(0,1.6fr)_repeat(3,minmax(150px,.55fr))] max-[900px]:grid-cols-2 max-[640px]:grid-cols-1 gap-[1px] bg-[#d9d3ca] border border-[#d9d3ca] mt-[22px]`} aria-labelledby="news-standard">
         <div className="bg-[#10263b] text-white p-[26px] max-[640px]:p-[22px]">
-          <span className="text-[#d8b7a1] text-[9px] font-bold uppercase tracking-[.2em]">The blog standard</span>
-          <h1 id="blog-standard" className={`${SERIF} text-[clamp(28px,3.5vw,47px)] leading-[.96] tracking-[-.025em] mt-[12px] mb-[14px]`}>Read the evidence.<br />Understand the context.<br />Form your view.</h1>
-          <p className="m-0 max-w-[540px] text-[#cbd4da] text-[13px] leading-[1.6]">Every post links its source material, separates analysis from established facts and shows when it was last reviewed.</p>
+          <span className="text-[#d8b7a1] text-[9px] font-bold uppercase tracking-[.2em]">The Business Standard</span>
+          <h1 id="news-standard" className={`${SERIF} text-[clamp(28px,3.5vw,47px)] leading-[.96] tracking-[-.025em] mt-[12px] mb-[14px]`}>Read the evidence.<br />Understand the context.<br />Form your view.</h1>
+          <p className="m-0 max-w-[540px] text-[#cbd4da] text-[13px] leading-[1.6]">Every story links its source material, separates analysis from established facts and shows when it was last reviewed.</p>
         </div>
         {[
-          { n: "48", t: "posts reviewed", d: "Every post has named sources and a visible review note." },
-          { n: "32", t: "evidence guides", d: "Evergreen explainers offer durable context and practical reading frameworks." },
-          { n: "16", t: "sourced analyses", d: "Current-affairs posts synthesize public records and reputable coverage." },
+          { n: "90", t: "stories reviewed", d: "Every story has named sources and a visible review note." },
+          { n: "36", t: "evidence guides", d: "Explainers provide durable context and practical reading frameworks." },
+          { n: "54", t: "news analyses", d: "Current stories synthesize public records and reputable coverage." },
         ].map((item) => (
           <article key={item.t} className="bg-[#f8f4ed] p-[22px] flex flex-col justify-between min-h-[190px]">
             <strong className={`${SERIF} text-[44px] leading-none text-[#7a1f2b]`}>{item.n}</strong>
@@ -148,7 +148,7 @@ export default function Home() {
             <h2>World</h2>
           </SectionHeading>
 
-          <TextList items={textStories.slice(0, 4)} />
+          <TextList items={worldStories} />
         </div>
 
         {/* Politics */}
@@ -208,10 +208,10 @@ export default function Home() {
         <Link
           className="relative min-h-[400px] max-[1100px]:col-span-2 max-[1100px]:min-h-[270px] max-[780px]:col-span-1 overflow-hidden text-white bg-[#101c27] block [&>img]:absolute [&>img]:inset-0 [&>img]:h-full [&>img]:object-cover [&>img]:[filter:saturate(.45)_brightness(.42)] [&>span]:absolute [&>span]:-top-[16px] [&>span]:w-full [&>span]:text-[#777] [&>span]:text-center [&>span]:text-[7px] [&>span]:uppercase [&>span]:tracking-[.16em] [&>div]:absolute [&>div]:inset-0 [&>div]:flex [&>div]:flex-col [&>div]:justify-center [&>div]:p-[26px] [&>div]:border-[8px] [&>div]:border-white/8"
           href="/about"
-          aria-label="Learn about The Global Dispatch blog"
+          aria-label="Learn about BusinessStandard.org"
         >
           <img src={advertisement.image} alt="Editorial illustration used as a background for the blog approach panel" loading="lazy" />
-          <span>About this blog</span>
+          <span>About this publication</span>
           <div>
             <small className="tracking-[.28em]">OUR APPROACH</small>
             <strong className={`${SERIF} text-[38px] leading-none mt-[12px] mb-[28px]`}>Ideas deserve evidence.</strong>
@@ -240,14 +240,14 @@ export default function Home() {
         <section
           className={`${SHELL} grid grid-cols-[1.2fr_.8fr_1fr] max-[1100px]:grid-cols-2 max-[780px]:grid-cols-1 gap-[28px] py-[28px] border-b border-[#ded8d1]`}
         >
-          {/* Lifestyle - Sticky */}
+          {/* Technology - Sticky */}
           <div className="sticky top-[24px] self-start max-[780px]:static">
             <SectionHeading>
-              <h2>Lifestyle</h2>
+              <h2>Technology</h2>
             </SectionHeading>
 
             <div className="grid grid-cols-2 gap-[16px]">
-              {lifestyle.map((article) => (
+              {technology.map((article) => (
                 <StoryCard
                   key={article.id}
                   article={article}
@@ -304,14 +304,14 @@ export default function Home() {
             })}
           </div>
 
-          {/* Culture - Controls the sticky area height */}
+          {/* Investigation - Controls the sticky area height */}
           <div className="max-[1100px]:col-span-2 max-[780px]:col-span-1">
             <SectionHeading>
-              <h2>Culture</h2>
+              <h2>Investigation</h2>
             </SectionHeading>
 
             <StoryCard
-              article={cultureFeature}
+              article={investigationFeature}
               variant="lead"
             />
 
@@ -319,8 +319,8 @@ export default function Home() {
               items={articles
                 .filter(
                   (article) =>
-                    article.category === "culture" &&
-                    article.id !== cultureFeature.id
+                    article.category === "investigation" &&
+                    article.id !== investigationFeature.id
                 )
                 .slice(0, 4)}
             />
@@ -328,7 +328,7 @@ export default function Home() {
         </section>
 
       <section className={`${SHELL} py-[30px] pb-[46px]`}>
-        <SectionHeading><h2>More from the blog</h2></SectionHeading>
+        <SectionHeading><h2>More from Business Standard</h2></SectionHeading>
         <div className="grid grid-cols-6 max-[1100px]:grid-cols-4 max-[780px]:grid-cols-1 gap-[22px_16px]">
           {moreStories.map((article) => (
             <div
