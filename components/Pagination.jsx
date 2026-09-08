@@ -48,7 +48,7 @@ export function Pagination({ basePath, currentPage, totalPages }) {
         className={`h-[38px] px-[16px] inline-flex items-center justify-center border text-[11px] font-bold uppercase tracking-[.08em] ${SANS} transition-colors ${
           isFirst
             ? "pointer-events-none border-[#ded8d1] text-[#c7c1bb]"
-            : "border-[#171515] text-[#171515] hover:bg-[#171515] hover:text-white"
+            : "border-[#171515] text-[#171515] hover:bg-[#171515] hover:text-white!"
         }`}
       >
         ← Prev
@@ -71,8 +71,8 @@ export function Pagination({ basePath, currentPage, totalPages }) {
               aria-current={item.page === currentPage ? "page" : undefined}
               className={`h-[38px] w-[38px] inline-flex items-center justify-center ${SERIF} text-[14px] border transition-colors ${
                 item.page === currentPage
-                  ? "bg-[#71151f] border-[#71151f] text-white"
-                  : "border-[#ded8d1] text-[#171515] hover:border-[#71151f] hover:text-[#71151f]"
+                  ? "bg-[#71151f] border-[#71151f] text-white!"
+                  : "border-[#ded8d1] text-[#171515] hover:border-[#71151f] hover:text-[#71151f]!"
               }`}
             >
               {item.page}
@@ -88,7 +88,7 @@ export function Pagination({ basePath, currentPage, totalPages }) {
         className={`h-[38px] px-[16px] inline-flex items-center justify-center border text-[11px] font-bold uppercase tracking-[.08em] ${SANS} transition-colors ${
           isLast
             ? "pointer-events-none border-[#ded8d1] text-[#c7c1bb]"
-            : "border-[#171515] text-[#171515] hover:bg-[#171515] hover:text-white"
+            : "border-[#171515] text-[#171515] hover:bg-[#171515] hover:text-white!"
         }`}
       >
         Next →

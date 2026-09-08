@@ -60,7 +60,7 @@ export function AuthorArticles({ authorName, stories }) {
             onClick={() => goTo(page - 1)}
             disabled={page === 1}
             aria-label="Previous page"
-            className="grid place-items-center w-[36px] h-[36px] rounded-full border border-[#e5e0d8] text-[#4a4a4a] hover:border-[#7a1f2b] hover:text-[#7a1f2b] disabled:opacity-35 disabled:pointer-events-none"
+            className="grid place-items-center w-[36px] h-[36px] rounded-full border border-[#e5e0d8] text-[#4a4a4a] cursor-pointer hover:border-[#7a1f2b] hover:text-[#7a1f2b]! disabled:opacity-35 disabled:pointer-events-none disabled:cursor-not-allowed"
           >
             <SocialIcon name="chevronLeft" size={14} />
           </button>
@@ -75,10 +75,10 @@ export function AuthorArticles({ authorName, stories }) {
                   type="button"
                   onClick={() => goTo(number)}
                   aria-current={number === page ? "page" : undefined}
-                  className={`grid place-items-center w-[36px] h-[36px] rounded-full text-[13.5px] font-bold border ${
+                  className={`grid place-items-center w-[36px] h-[36px] rounded-full text-[13.5px] font-bold border cursor-pointer ${
                     number === page
-                      ? "bg-[#7a1f2b] border-[#7a1f2b] text-white"
-                      : "border-[#e5e0d8] text-[#4a4a4a] hover:border-[#7a1f2b] hover:text-[#7a1f2b]"
+                      ? "bg-[#7a1f2b] border-[#7a1f2b] text-white!"
+                      : "border-[#e5e0d8] text-[#4a4a4a] hover:border-[#7a1f2b] hover:text-[#7a1f2b]!"
                   }`}
                 >
                   {number}
@@ -92,7 +92,7 @@ export function AuthorArticles({ authorName, stories }) {
             onClick={() => goTo(page + 1)}
             disabled={page === totalPages}
             aria-label="Next page"
-            className="grid place-items-center w-[36px] h-[36px] rounded-full border border-[#e5e0d8] text-[#4a4a4a] hover:border-[#7a1f2b] hover:text-[#7a1f2b] disabled:opacity-35 disabled:pointer-events-none"
+            className="grid place-items-center w-[36px] h-[36px] rounded-full border border-[#e5e0d8] text-[#4a4a4a] cursor-pointer hover:border-[#7a1f2b] hover:text-[#7a1f2b]! disabled:opacity-35 disabled:pointer-events-none disabled:cursor-not-allowed"
           >
             <SocialIcon name="chevronRight" size={14} />
           </button>
