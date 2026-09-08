@@ -1,4 +1,4 @@
-import { articles, authors, categories } from "@/data/news";
+import { articles, authors, categories, categoryUrlSlug } from "@/data/news";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap() {
@@ -8,13 +8,13 @@ export default function sitemap() {
     ...["contact", "editorial-standards", "corrections", "privacy", "terms"].map((page) => ({ url: `${siteConfig.url}/${page}`, lastModified: new Date("2026-09-04"), changeFrequency: "yearly", priority: 0.4 })),
   ];
   const categoryPages = categories.map((category) => ({
-    url: `${siteConfig.url}/${category}`,
+    url: `${siteConfig.url}/${categoryUrlSlug(category)}`,
     lastModified: new Date(),
     changeFrequency: "daily",
     priority: 0.8,
   }));
   const articlePages = articles.map((article) => ({
-    url: `${siteConfig.url}/${article.category}/${article.slug}`,
+    url: `${siteConfig.url}/${categoryUrlSlug(article.category)}/${article.slug}`,
     lastModified: new Date(article.updatedAt),
     changeFrequency: "weekly",
     priority: 0.7,

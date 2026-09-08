@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { categoryLabel } from "@/data/news";
+import { categoryLabel, categoryUrlSlug } from "@/data/news";
 import { SocialIcon } from "@/components/SocialIcon";
 
 const CATEGORY_LABEL =
@@ -14,7 +14,7 @@ function NavCard({ article, direction }) {
 
   return (
     <Link
-      href={`/${article.category}/${article.slug}`}
+      href={`/${categoryUrlSlug(article.category)}/${article.slug}`}
       className={`group flex items-center gap-[16px] border border-[#e5e0d8] bg-[#f7f5f2] p-[16px] min-w-0 rounded-lg hover:border-[#7a1f2b] ${
         isPrev ? "" : "text-right flex-row-reverse"
       }`}

@@ -1,23 +1,22 @@
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Newsletter } from "@/components/Newsletter";
 import { ShareRow } from "@/components/ShareRow";
 import { ArticleNav } from "@/components/ArticleNav";
-import { articles, categoryLabel, formatDate, getAdjacentArticles, getArticle, getAuthor, timeAgo } from "@/data/news";
+import { articles, categoryFromUrlSlug, categoryLabel, categoryUrlSlug, formatDate, getAdjacentArticles, getArticle, getAuthor, timeAgo } from "@/data/news";
 import { siteConfig } from "@/lib/site";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return articles.map((article) => ({ category: article.category, slug: article.slug }));
+  return articles.map((article) => ({ category: categoryUrlSlug(article.category), slug: article.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { category, slug } = await params;
-  const article = getArticle(category, slug);
+  const article = getArticle(categoryFromUrlSlug(category), slug);
   if (!article) return {};
-  const url = `${siteConfig.url}/${article.category}/${article.slug}`;
+  const url = `${siteConfig.url}/${categoryUrlSlug(article.category)}/${article.slug}`;
   const hasPrimaryImage = Boolean(article.image);
   return {
     title: article.title,
@@ -46,11 +45,11 @@ const CARD = "bg-[#f7f5f2] border border-[#e5e0d8] p-[20px] rounded-none [&>h2]:
 
 export default async function ArticlePage({ params }) {
   const { category, slug } = await params;
-  const article = getArticle(category, slug);
+  const article = getArticle(categoryFromUrlSlug(category), slug);
   if (!article) notFound();
   const author = getAuthor(article.authorSlug);
   if (!author) notFound();
-  const canonicalUrl = `${siteConfig.url}/${article.category}/${article.slug}`;
+  const canonicalUrl = `${siteConfig.url}/${categoryUrlSlug(article.category)}/${article.slug}`;
   const mostRead = articles.filter((item) => item.id !== article.id).slice(0, 5);
   const related = articles.filter((item) => item.category === article.category && item.id !== article.id).slice(0, 4);
   const { previous, next } = getAdjacentArticles(article);
@@ -96,7 +95,7 @@ export default async function ArticlePage({ params }) {
               {mostRead.map((item, index) => (
                 <li key={item.id} className="grid grid-cols-[30px_1fr] gap-[10px] py-[11px] border-b border-[#e5e0d8] last:border-b-0 last:pb-0">
                   <span className={`text-[#d8cfc6] font-bold ${SERIF} text-[22px] leading-none`}>{String(index + 1).padStart(2, "0")}</span>
-                  <Link href={`/${item.category}/${item.slug}`} className={`text-[13px] leading-[1.35] ${SANS} text-[#1a1a1a] hover:text-[#7a1f2b]`}>{item.title}</Link>
+                  <Link href={`/${categoryUrlSlug(item.category)}/${item.slug}`} className={`text-[13px] leading-[1.35] ${SANS} text-[#1a1a1a] hover:text-[#7a1f2b]`}>{item.title}</Link>
                 </li>
               ))}
             </ol>
@@ -108,7 +107,7 @@ export default async function ArticlePage({ params }) {
         <nav className="flex flex-wrap gap-[8px] items-center text-[#6b6b6b] text-[12.5px] pt-[26px] [&>a:hover]:text-[#7a1f2b] [&>span:last-child]:text-[#1a1a1a] [&>span:last-child]:overflow-hidden [&>span:last-child]:text-ellipsis [&>span:last-child]:whitespace-nowrap [&>span:last-child]:max-w-[45vw]" aria-label="Breadcrumb">
           <Link href="/">Home</Link>
           <span>/</span>
-          <Link href={`/${article.category}`}>{label}</Link>
+          <Link href={`/${categoryUrlSlug(article.category)}`}>{label}</Link>
           <span>/</span>
           <span>{article.title}</span>
         </nav>
@@ -248,7 +247,7 @@ export default async function ArticlePage({ params }) {
         <h2 className="m-0 mb-[20px] pb-[10px] font-bold text-[18px] border-b-2 border-[#7a1f2b]">More in {label}</h2>
         <div className="grid grid-cols-2 max-[900px]:grid-cols-1 gap-[22px_32px]">
           {related.map((item) => (
-            <Link key={item.id} href={`/${item.category}/${item.slug}`} className="grid grid-cols-[88px_1fr] gap-[14px] group">
+            <Link key={item.id} href={`/${categoryUrlSlug(item.category)}/${item.slug}`} className="grid grid-cols-[88px_1fr] gap-[14px] group">
               <span className="block w-[88px] h-[66px] overflow-hidden flex-none [&>img]:w-full [&>img]:h-full [&>img]:object-cover">
                 <img src={item.image} alt={item.imageAlt} loading="lazy" />
               </span>

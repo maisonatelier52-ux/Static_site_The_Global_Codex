@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { categoryUrlSlug } from "@/data/news";
 
 export function BreakingTicker({ articles }) {
   const items = articles.slice(0, 5);
@@ -19,7 +20,7 @@ export function BreakingTicker({ articles }) {
           {[...items, ...items].map((article, index) => (
             <Link
               key={`${article.id}-${index}`}
-              href={`/${article.category}/${article.slug}`}
+              href={`/${categoryUrlSlug(article.category)}/${article.slug}`}
               tabIndex={index < items.length ? 0 : -1}
               aria-hidden={index >= items.length ? "true" : undefined}
               className="flex-none px-[24px] border-r border-[#ded8d1] font-['Georgia','Times_New_Roman',serif] text-[13px] before:content-['•'] before:text-[#71151f] before:mr-[12px] hover:text-[#71151f]"

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { SocialIcon } from "@/components/SocialIcon";
-import { categoryLabel, timeAgo } from "@/data/news";
+import { categoryLabel, categoryUrlSlug, timeAgo } from "@/data/news";
 
 const SERIF = "font-['Georgia','Times_New_Roman',serif]";
 const SANS = "font-['Arial','Helvetica',sans-serif]";
@@ -41,7 +41,7 @@ export function AuthorArticles({ authorName, stories }) {
     <div>
       <div className="grid grid-cols-3 max-[900px]:grid-cols-2 max-[600px]:grid-cols-1 gap-[30px]">
         {visible.map((article) => (
-          <Link key={article.id} href={`/${article.category}/${article.slug}`} className="flex flex-col group">
+          <Link key={article.id} href={`/${categoryUrlSlug(article.category)}/${article.slug}`} className="flex flex-col group">
             <span className="block w-full aspect-[16/10] overflow-hidden mb-[12px] [&>img]:w-full [&>img]:h-full [&>img]:object-cover [&>img]:transition-transform [&>img]:duration-500 [&>img]:ease-in-out group-hover:[&>img]:scale-[1.04]">
               <img src={article.image} alt={article.imageAlt} loading="lazy" />
             </span>

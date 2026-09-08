@@ -2,7 +2,7 @@ import Link from "next/link";
 import { BreakingTicker } from "@/components/BreakingTicker";
 import { Newsletter } from "@/components/Newsletter";
 import { StoryCard } from "@/components/StoryCard";
-import { articles, authors, categoryLabel, formatDate } from "@/data/news";
+import { articles, authors, categoryLabel, categoryUrlSlug, formatDate } from "@/data/news";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = {
@@ -58,7 +58,7 @@ function TextList({ items }) {
       {items.map((article) => (
         <Link
           key={article.id}
-          href={`/${article.category}/${article.slug}`}
+          href={`/${categoryUrlSlug(article.category)}/${article.slug}`}
           className="block py-[12px] border-b border-[#ded8d1] hover:[&_strong]:text-[#71151f]"
         >
           <strong className={`block font-bold ${SERIF} text-[16px] leading-[1.3]`}>{article.title}</strong>
@@ -76,7 +76,7 @@ function TextListNoSummary({ items }) {
       {items.map((article) => (
         <Link
           key={article.id}
-          href={`/${article.category}/${article.slug}`}
+          href={`/${categoryUrlSlug(article.category)}/${article.slug}`}
           className="block py-[12px] border-b border-[#ded8d1] hover:[&_strong]:text-[#71151f]"
         >
           <strong className={`block font-bold ${SERIF} text-[16px] leading-[1.3]`}>{article.title}</strong>
@@ -189,7 +189,7 @@ export default function Home() {
             {articles.slice(0, 5).map((article, index) => (
               <Link
                 key={article.id}
-                href={`/${article.category}/${article.slug}`}
+                href={`/${categoryUrlSlug(article.category)}/${article.slug}`}
                 className="grid grid-cols-[42px_1fr] gap-[10px] items-start py-[12px] border-b border-[#ded8d1] hover:[&_strong]:text-[#71151f]"
               >
                 <span

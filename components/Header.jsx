@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { navCategories, siteConfig } from "@/lib/site";
+import { categoryUrlSlug } from "@/data/news";
 import { SocialIcon } from "./SocialIcon";
 
 // A Gmail address is required: something@gmail.com (case-insensitive on the domain).
@@ -215,7 +216,7 @@ export function Header({ searchItems }) {
           {navCategories.map((category) => (
             <Link
               key={category}
-              href={`/${category.toLowerCase()}`}
+              href={`/${categoryUrlSlug(category.toLowerCase())}`}
               onClick={() => setMenuOpen(false)}
               className="flex-none px-[19px] py-[14px] font-['Georgia','Times_New_Roman',serif] text-[14px] max-[780px]:border-b max-[780px]:border-[#ded8d1] max-[780px]:px-[9px] max-[780px]:py-[13px] hover:text-[#71151f] hover:bg-[#f8f5f1]"
             >
@@ -257,7 +258,7 @@ export function Header({ searchItems }) {
               {results.map((item) => (
                 <Link
                   key={item.slug}
-                  href={`/${item.category}/${item.slug}`}
+                  href={`/${categoryUrlSlug(item.category)}/${item.slug}`}
                   onClick={() => setSearchOpen(false)}
                   className="grid grid-cols-[95px_1fr] max-[780px]:grid-cols-1 gap-x-[16px] gap-y-[4px] py-[14px] px-[4px] border-b border-[#ded8d1]"
                 >

@@ -132,6 +132,24 @@ export function categoryLabel(value) {
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
+// The "U.S." category is stored internally as "u.s" (it matches the source
+// JSON key), but "u.s" reads oddly as a URL segment (`/u.s`). These two
+// helpers translate between the internal category key and the clean slug
+// used in links, routes, and the sitemap — every other category is
+// unaffected and passes straight through.
+const CATEGORY_TO_URL_SLUG = { "u.s": "us" };
+const URL_SLUG_TO_CATEGORY = Object.fromEntries(
+  Object.entries(CATEGORY_TO_URL_SLUG).map(([category, slug]) => [slug, category]),
+);
+
+export function categoryUrlSlug(category) {
+  return CATEGORY_TO_URL_SLUG[category] || category;
+}
+
+export function categoryFromUrlSlug(slug) {
+  return URL_SLUG_TO_CATEGORY[slug] || slug;
+}
+
 export function timeAgo(value) {
   const days = Math.max(0, Math.round((Date.now() - new Date(value).getTime()) / 86400000));
   if (days <= 0) return "Today";

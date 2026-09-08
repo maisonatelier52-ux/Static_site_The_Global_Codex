@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { categoryUrlSlug } from "@/data/news";
 import { navCategories, siteConfig } from "@/lib/site";
 
 export function Footer() {
@@ -14,13 +15,13 @@ export function Footer() {
         <div>
           <h2 className="m-0 mb-[14px] text-[#aeb8be] text-[11px] uppercase tracking-[.14em]">Sections</h2>
           {navCategories.slice(0, 5).map((category) => (
-            <Link key={category} className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href={`/${category.toLowerCase()}`}>{category}</Link>
+            <Link key={category} className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href={`/${categoryUrlSlug(category.toLowerCase())}`}>{category}</Link>
           ))}
         </div>
         <div>
           <h2 className="m-0 mb-[14px] text-[#aeb8be] text-[11px] uppercase tracking-[.14em]">More</h2>
           {navCategories.slice(5).map((category) => (
-            <Link key={category} className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href={`/${category.toLowerCase()}`}>{category}</Link>
+            <Link key={category} className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href={`/${categoryUrlSlug(category.toLowerCase())}`}>{category}</Link>
           ))}
         </div>
         <div>
@@ -28,14 +29,14 @@ export function Footer() {
           <Link className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href="/about">About us</Link>
           <Link className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href="/contact">Contact</Link>
           <Link className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href="/editorial-standards">Editorial standards</Link>
-          {/* <Link className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href="/sitemap.xml">Sitemap</Link> */}
+          <Link className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href="/sitemap.xml">Sitemap</Link>
         </div>
         <div>
           <h2 className="m-0 mb-[14px] text-[#aeb8be] text-[11px] uppercase tracking-[.14em]">Legal</h2>
           <Link className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href="/privacy">Privacy policy</Link>
           <Link className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href="/terms">Terms & conditions</Link>
           <Link className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href="/corrections">Corrections policy</Link>
-          {/* <Link className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href="/llms.txt">LLMs.txt</Link> */}
+          <Link className="block text-[#e5e8ea] font-['Georgia','Times_New_Roman',serif] text-[14px] py-[6px] hover:text-[#efb3ba]" href="/llms.txt">LLMs.txt</Link>
         </div>
       </div>
       <div className="w-[min(1240px,calc(100%-40px))] max-[780px]:w-[min(100%-28px,1240px)] mx-auto flex max-[780px]:flex-col justify-between gap-[20px] py-[18px] border-t border-white/12 text-[#8f9aa1] text-[12px]">

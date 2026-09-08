@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { categoryLabel, formatDate } from "@/data/news";
+import { categoryLabel, categoryUrlSlug, formatDate } from "@/data/news";
 
 const SERIF = "font-['Georgia','Times_New_Roman',serif]";
 
@@ -88,7 +88,7 @@ const imageAspect = isLead
 
   return (
     <article className={articleClass}>
-      <Link className={imageClass} href={`/${article.category}/${article.slug}`} aria-label={article.title}>
+      <Link className={imageClass} href={`/${categoryUrlSlug(article.category)}/${article.slug}`} aria-label={article.title}>
         <img
           className="w-full h-full object-cover transition-transform duration-[550ms] ease-in-out group-hover:scale-[1.035]"
           src={article.image}
@@ -103,8 +103,8 @@ const imageAspect = isLead
         </span>
       </Link>
       <div className={copyClass}>
-        <Link className={categoryClass} href={`/${article.category}`}>{categoryLabel(article.category)}</Link>
-        <h3 className={h3Class}><Link href={`/${article.category}/${article.slug}`}>{article.title}</Link></h3>
+        <Link className={categoryClass} href={`/${categoryUrlSlug(article.category)}`}>{categoryLabel(article.category)}</Link>
+        <h3 className={h3Class}><Link href={`/${categoryUrlSlug(article.category)}/${article.slug}`}>{article.title}</Link></h3>
         {(isLead || isDefault) && <p className={pClass}>{article.summary}</p>}
         <div className={metaClass}>
           <span>{formatDate(article.publishedAt)}</span>

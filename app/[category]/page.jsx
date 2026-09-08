@@ -3,19 +3,20 @@ import { notFound } from "next/navigation";
 import { Newsletter } from "@/components/Newsletter";
 import { StoryCard } from "@/components/StoryCard";
 import { Pagination } from "@/components/Pagination";
-import { articles, categories, categoryLabel, formatDate } from "@/data/news";
+import { articles, categories, categoryFromUrlSlug, categoryLabel, categoryUrlSlug, formatDate } from "@/data/news";
 import { siteConfig } from "@/lib/site";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return categories.map((category) => ({ category }));
+  return categories.map((category) => ({ category: categoryUrlSlug(category) }));
 }
 
 export async function generateMetadata({ params }) {
   const { category } = await params;
-  if (!categories.includes(category)) return {};
-  const label = categoryLabel(category);
+  const internalCategory = categoryFromUrlSlug(category);
+  if (!categories.includes(internalCategory)) return {};
+  const label = categoryLabel(internalCategory);
   return {
     title: `${label} News`,
     description: `Latest ${label} news, analysis and explainers for U.S. readers from ${siteConfig.name}.`,
@@ -34,10 +35,11 @@ const LIST_PAGE_SIZE = 5;
 
 export default async function CategoryPage({ params, searchParams }) {
   const { category } = await params;
+  const internalCategory = categoryFromUrlSlug(category);
   const resolvedSearchParams = (await searchParams) ?? {};
-  const categoryArticles = articles.filter((article) => article.category === category);
+  const categoryArticles = articles.filter((article) => article.category === internalCategory);
   if (!categoryArticles.length) notFound();
-  const label = categoryLabel(category);
+  const label = categoryLabel(internalCategory);
 
   // Article 0 = big hero (overlay). Articles 1-3 = the three horizontal
   // cards next to it. Everything after that lives in the paginated list.
@@ -100,7 +102,7 @@ export default async function CategoryPage({ params, searchParams }) {
               {/* NUMBER */}
               <Link
                 className={`text-[#71151f] ${SERIF} text-[32px]`}
-                href={`/${article.category}/${article.slug}`}
+                href={`/${category}/${article.slug}`}
               >
                 {String(pageStart + index + 1).padStart(2, "0")}
               </Link>
@@ -108,7 +110,7 @@ export default async function CategoryPage({ params, searchParams }) {
               {/* IMAGE */}
               <Link
                 className="max-[480px]:hidden aspect-[1.45] overflow-hidden block [&>img]:h-full [&>img]:object-cover"
-                href={`/${article.category}/${article.slug}`}
+                href={`/${category}/${article.slug}`}
               >
                 <img
                   src={article.image}
@@ -126,7 +128,7 @@ export default async function CategoryPage({ params, searchParams }) {
                 <h2
                   className={`my-[7px] font-bold ${SERIF} text-[23px] max-[780px]:text-[18px] leading-[1.08]`}
                 >
-                  <Link href={`/${article.category}/${article.slug}`}>
+                  <Link href={`/${category}/${article.slug}`}>
                     {article.title}
                   </Link>
                 </h2>
