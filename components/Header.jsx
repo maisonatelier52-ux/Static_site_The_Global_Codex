@@ -5,9 +5,133 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { navCategories, siteConfig } from "@/lib/site";
 import { SocialIcon } from "./SocialIcon";
 
+// A Gmail address is required: something@gmail.com (case-insensitive on the domain).
+const GMAIL_PATTERN = /^[^\s@]+@gmail\.com$/i;
+
+function SubscribeModal({ onClose }) {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const trimmed = email.trim();
+
+    if (!trimmed) {
+      setError("Please enter your email address.");
+      return;
+    }
+    if (!GMAIL_PATTERN.test(trimmed)) {
+      setError("Please enter a valid Gmail address (it must end with @gmail.com).");
+      return;
+    }
+
+    setError("");
+    setSubmitted(true);
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] grid place-items-center bg-black/65 backdrop-blur-[5px] px-[16px]"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Subscribe to Business Standard"
+      onMouseDown={(event) => {
+        if (event.currentTarget === event.target) onClose();
+      }}
+    >
+      <div className="w-[min(440px,100%)] bg-[#fffefa] shadow-[0_25px_80px_rgba(0,0,0,.28)] p-[28px] relative">
+        <button
+          className="absolute top-[16px] right-[16px] border-0 bg-transparent cursor-pointer"
+          onClick={onClose}
+          aria-label="Close subscribe dialog"
+        >
+          <SocialIcon name="close" size={20} />
+        </button>
+
+        {!submitted ? (
+          <>
+            <span className="block w-[44px] h-[44px] rounded-full bg-[#10263b] text-white grid place-items-center mb-[16px]">
+              <SocialIcon name="mail" size={20} />
+            </span>
+            <h2 className="font-bold font-['Georgia','Times_New_Roman',serif] text-[24px] leading-[1.15] text-[#171515] m-0">
+              Subscribe to Business Standard
+            </h2>
+            <p className="mt-[10px] mb-[20px] text-[#6f6966] text-[13px] leading-[1.6]">
+              Get source-reviewed reporting delivered to your inbox. Enter your Gmail
+              address to get started.
+            </p>
+
+            <form onSubmit={handleSubmit} noValidate>
+              <label htmlFor="subscribe-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="subscribe-email"
+                ref={inputRef}
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                  if (error) setError("");
+                }}
+                placeholder="yourname@gmail.com"
+                aria-invalid={Boolean(error)}
+                aria-describedby={error ? "subscribe-email-error" : undefined}
+                className={`w-full border px-[14px] py-[12px] text-[15px] outline-none bg-white ${
+                  error ? "border-[#7a1f2b]" : "border-[#ded8d1] focus:border-[#10263b]"
+                }`}
+              />
+              {error && (
+                <p id="subscribe-email-error" className="mt-[8px] text-[#7a1f2b] text-[12px]">
+                  {error}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className="w-full mt-[16px] bg-[#10263b] !text-white text-[13px] font-medium uppercase tracking-[.08em] px-[18px] py-[13px] rounded-[2px] hover:bg-[#7a1f2b] cursor-pointer"
+              >
+                Subscribe
+              </button>
+            </form>
+          </>
+        ) : (
+          <div className="text-center py-[10px]">
+            <span className="inline-grid w-[52px] h-[52px] rounded-full bg-[#1b5e4b] text-white place-items-center mb-[16px]">
+              <SocialIcon name="check" size={24} />
+            </span>
+            <h2 className="font-bold font-['Georgia','Times_New_Roman',serif] text-[22px] leading-[1.15] text-[#171515] m-0">
+              You&apos;re subscribed
+            </h2>
+            <p className="mt-[10px] text-[#6f6966] text-[13px] leading-[1.6]">
+              We&apos;ll send new stories to <strong className="text-[#171515]">{email.trim()}</strong>.
+            </p>
+            <button
+              type="button"
+              onClick={onClose}
+              className="mt-[20px] bg-[#10263b] !text-white text-[13px] font-medium uppercase tracking-[.08em] px-[18px] py-[12px] rounded-[2px] hover:bg-[#7a1f2b] cursor-pointer"
+            >
+              Done
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function Header({ searchItems }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [subscribeOpen, setSubscribeOpen] = useState(false);
   const [query, setQuery] = useState("");
   const inputRef = useRef(null);
 
@@ -20,6 +144,7 @@ export function Header({ searchItems }) {
       if (event.key === "Escape") {
         setSearchOpen(false);
         setMenuOpen(false);
+        setSubscribeOpen(false);
       }
     };
     window.addEventListener("keydown", closeOnEscape);
@@ -62,12 +187,13 @@ export function Header({ searchItems }) {
           <span className="font-bold font-['Georgia','Times_New_Roman',serif] text-[42px] max-[780px]:text-[27px] leading-[.9] text-[#10263b] tracking-[.08em] pl-[.08em]">BUSINESS STANDARD</span>
           <span className="font-['Arial','Helvetica',sans-serif] text-[9px] uppercase tracking-[.22em] text-[#7a1f2b] mt-[10px] max-[780px]:hidden">{siteConfig.tagline}</span>
         </Link>
-        <Link
-          href="/about#standards"
-          className="justify-self-end max-[780px]:hidden bg-[#10263b] text-white text-[12px] px-[18px] py-[11px] rounded-[2px] hover:bg-[#7a1f2b]"
+        <button
+          type="button"
+          onClick={() => setSubscribeOpen(true)}
+          className="justify-self-end max-[780px]:hidden bg-[#10263b] text-white text-[12px] px-[18px] py-[11px] rounded-[2px] hover:bg-[#7a1f2b] cursor-pointer"
         >
-          <span className="text-white font-medium">How we source</span>
-        </Link>
+          <span className="text-white font-medium">Subscribe</span>
+        </button>
         <button
           className="hidden max-[780px]:block justify-self-end border-0 bg-transparent p-[10px] cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -144,6 +270,8 @@ export function Header({ searchItems }) {
           </div>
         </div>
       )}
+
+      {subscribeOpen && <SubscribeModal onClose={() => setSubscribeOpen(false)} />}
     </header>
   );
 }

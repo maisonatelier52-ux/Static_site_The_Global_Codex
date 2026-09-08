@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { BreakingTicker } from "@/components/BreakingTicker";
 import { Newsletter } from "@/components/Newsletter";
@@ -15,9 +14,25 @@ export const metadata = {
 const hero = articles.slice(0, 6);
 const spotlight = articles.slice(6, 13);
 const latest = articles.slice(13, 18);
-const splitLeads = articles.slice(18, 20);
-const advertisement = articles[20];
-const columnLeads = articles.slice(21, 24);
+// `articles` is already sorted newest-first (see data/news.js), so any
+// plain .slice()/.filter() over it naturally stays in date order. These two
+// leads are picked per-category with .find(), so they're re-sorted by
+// publishedAt here to guarantee the most recent one renders first (leftmost).
+const byNewestFirst = (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt);
+
+const splitLeads = [
+  articles.find((article) => article.category === "finance"),
+  articles.find((article) => article.category === "health"),
+]
+  .filter(Boolean)
+  .sort(byNewestFirst);
+const columnLeads = [
+  articles.find((article) => article.category === "u.s"),
+  articles.find((article) => article.category === "business"),
+  articles.find((article) => article.category === "sport"),
+]
+  .filter(Boolean)
+  .sort(byNewestFirst);
 const technology = articles.filter((article) => article.category === "technology").slice(0, 4);
 const investigationFeature = articles.find((article) => article.category === "investigation");
 const moreStories = articles.slice(29, 41);
@@ -205,19 +220,38 @@ export default function Home() {
             </div>
           </div>
         ))}
-        <Link
-          className="relative min-h-[400px] max-[1100px]:col-span-2 max-[1100px]:min-h-[270px] max-[780px]:col-span-1 overflow-hidden text-white bg-[#101c27] block [&>img]:absolute [&>img]:inset-0 [&>img]:h-full [&>img]:object-cover [&>img]:[filter:saturate(.45)_brightness(.42)] [&>span]:absolute [&>span]:-top-[16px] [&>span]:w-full [&>span]:text-[#777] [&>span]:text-center [&>span]:text-[7px] [&>span]:uppercase [&>span]:tracking-[.16em] [&>div]:absolute [&>div]:inset-0 [&>div]:flex [&>div]:flex-col [&>div]:justify-center [&>div]:p-[26px] [&>div]:border-[8px] [&>div]:border-white/8"
-          href="/about"
-          aria-label="Learn about BusinessStandard.org"
+        <a
+          className="relative sticky top-[24px] self-start min-h-[400px] max-[1100px]:col-span-2 max-[1100px]:min-h-0 max-[1100px]:aspect-[2048/768] max-[780px]:col-span-1 overflow-hidden bg-[#101c27] block"
+          href="#"
+          target="_blank"
+          rel="sponsored noopener noreferrer"
+          aria-label="Advertisement"
         >
-          <img src={advertisement.image} alt="Editorial illustration used as a background for the blog approach panel" loading="lazy" />
-          <span>About this publication</span>
-          <div>
-            <small className="tracking-[.28em]">OUR APPROACH</small>
-            <strong className={`${SERIF} text-[38px] leading-none mt-[12px] mb-[28px]`}>Ideas deserve evidence.</strong>
-            <b className="self-start border border-white px-[12px] py-[9px] text-[9px] uppercase tracking-[.1em] font-normal">Read how we work</b>
-          </div>
-        </Link>
+          {/* Desktop: shown above 1100px — build at 260x400 (2x: 520x800) */}
+          <img
+            src="/images/ads/ad-desktop.webp"
+            alt="Advertisement"
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-contain !block max-[1100px]:!hidden"
+          />
+          {/* Tablet: shown between 781px and 1100px — build at 2048x768 (or any 2.67:1 banner) */}
+          <img
+            src="/images/ads/ad-tablet.webp"
+            alt="Advertisement"
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover !hidden max-[1100px]:!block max-[780px]:!hidden"
+          />
+          {/* Mobile: shown at 780px and below — build at 2048x768 (or any 2.67:1 banner) */}
+          <img
+            src="/images/ads/ad-mobile.webp"
+            alt="Advertisement"
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover !hidden max-[780px]:!block"
+          />
+          {/* <span className="absolute top-[8px] left-1/2 -translate-x-1/2 text-[#eee] text-[9px] uppercase tracking-[.16em] bg-black/40 px-[8px] py-[2px] rounded-[2px]">
+            Advertisement
+          </span> */}
+        </a>
       </section>
 
       {/* section 5 */}
