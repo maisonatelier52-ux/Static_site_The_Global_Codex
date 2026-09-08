@@ -19,7 +19,7 @@ export function ShareRow({ title, url }) {
   }
 
   const btnClass =
-    "w-[34px] h-[34px] grid place-items-center rounded-full bg-[#f7f5f2] text-[#7a1f2b] border border-[#e5e0d8] cursor-pointer transition-colors duration-150 ease-in-out hover:bg-[#7a1f2b] hover:text-white hover:border-[#7a1f2b]";
+    "w-[34px] h-[34px] grid place-items-center rounded-full bg-[#f7f5f2] text-[#7a1f2b] border border-[#e5e0d8] cursor-pointer transition-colors duration-150 ease-in-out hover:bg-[#7a1f2b] hover:text-white! hover:border-[#7a1f2b]";
 
   return (
     <div className="flex items-center gap-[8px] relative">

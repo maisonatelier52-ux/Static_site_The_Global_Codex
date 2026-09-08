@@ -116,7 +116,7 @@ export default function AboutPage() {
               </span>
               <span>
                 <small className="block mb-[8px] text-[#d8b7a1] text-[9px] uppercase tracking-[.12em]">{author.role}</small>
-                <strong className="block font-bold font-['Georgia','Times_New_Roman',serif] text-[25px]">{author.name}</strong>
+                <strong className="block font-bold font-['Georgia','Times_New_Roman',serif] text-[25px] text-white">{author.name}</strong>
                 <small className="block mt-[8px] text-[#cbd4da] text-[11px] leading-[1.5]">{author.beat}</small>
               </span>
             </Link>

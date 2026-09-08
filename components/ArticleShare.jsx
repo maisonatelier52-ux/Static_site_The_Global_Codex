@@ -20,7 +20,7 @@ export function ArticleShare({ title, url }) {
   }
 
   const btnClass =
-    "w-[34px] h-[34px] grid place-items-center rounded-full bg-[#f7f5f2] text-[#7a1f2b] border border-[#e5e0d8] cursor-pointer transition-colors duration-150 ease-in-out hover:bg-[#7a1f2b] hover:text-white hover:border-[#7a1f2b]";
+    "w-[34px] h-[34px] grid place-items-center rounded-full bg-[#f7f5f2] text-[#7a1f2b] border border-[#e5e0d8] cursor-pointer transition-colors duration-150 ease-in-out hover:bg-[#7a1f2b] hover:text-white! hover:border-[#7a1f2b]";
 
   return (
     <div className="flex items-center gap-[8px]">
@@ -32,7 +32,7 @@ export function ArticleShare({ title, url }) {
       <a className={btnClass} href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`} target="_blank" rel="noreferrer" aria-label="Share on LinkedIn"><SocialIcon name="linkedin" /></a>
       <button className={btnClass} onClick={copyLink} aria-label="Copy article link"><SocialIcon name="link" /></button>
       <button
-        className="border border-[#7a1f2b] bg-transparent text-[#7a1f2b] text-[11px] font-bold uppercase tracking-[.08em] px-[12px] py-[8px] cursor-pointer hover:bg-[#7a1f2b] hover:text-white"
+        className="border border-[#7a1f2b] bg-transparent text-[#7a1f2b] text-[11px] font-bold uppercase tracking-[.08em] px-[12px] py-[8px] cursor-pointer hover:bg-[#7a1f2b] hover:text-white!"
         onClick={nativeShare}
       >
         {copied ? "Copied" : "More"}
