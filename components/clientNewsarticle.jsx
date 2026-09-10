@@ -10,6 +10,7 @@ const SERIF = "font-['Georgia','Times_New_Roman',serif]";
 const SANS = "font-['Arial','Helvetica',sans-serif]";
 const CERTIFICATE_IMAGE = "/images/illustrations/banco-caracas-herrera-velutini-banking-history-certificate.webp";
 const GALLERY_IMAGE = "/images/illustrations/banco-caracas-herrera-velutini-banking-history-gallery.webp";
+const PERSON_IMAGE = "/images/illustrations/julio-herrera-velutini-image.webp";
 
 function displayDate(value) {
   return new Intl.DateTimeFormat("en-US", {
@@ -69,18 +70,58 @@ function MetaItem({ icon: Icon, label, children }) {
   );
 }
 
-function NumberedSection({ section, index }) {
+function NumberedSection({ section, index, image }) {
+  const heading = (
+    <h2 className={`${SERIF} m-0 mb-[12px] flex items-baseline gap-[12px] text-[19px] font-bold leading-[1.16] text-[#171717] max-[560px]:text-[16px]`}>
+      <span className={`${SERIF} text-[31px] leading-none text-[#c88f8b]`} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+      {section.heading}
+    </h2>
+  );
+
+  const paragraphs = section.blocks.map((block, blockIndex) => (
+    <p key={`${section.id}-${blockIndex}`} className={`${SERIF} m-0 mb-[14px] text-[14px] leading-[1.65] text-[#26211d] text-justify last:mb-0`}>{block.text}</p>
+  ));
+
   return (
     <section id={section.id} className="scroll-mt-[92px] border-t border-[#ece5dc] py-[30px] first:border-t-0 first:pt-0">
-      <div>
-        <h2 className={`${SERIF} m-0 mb-[12px] flex items-baseline gap-[12px] text-[19px] font-bold leading-[1.16] text-[#171717] max-[560px]:text-[16px]`}>
-          <span className={`${SERIF} text-[31px] leading-none text-[#c88f8b]`} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-          {section.heading}
-        </h2>
-        {section.blocks.map((block, blockIndex) => (
-          <p key={`${section.id}-${blockIndex}`} className={`${SERIF} m-0 mb-[14px] text-[14px] leading-[1.65] text-[#26211d] text-justify last:mb-0`}>{block.text}</p>
-        ))}
-      </div>
+      {image ? (
+        <div className="grid grid-cols-[3fr_1fr] items-start gap-[26px] max-[700px]:grid-cols-1 max-[700px]:gap-[16px]">
+          <div className="min-w-0">
+            {heading}
+            {paragraphs}
+          </div>
+          <figure className="m-0">
+            <img
+              src={image.src}
+              alt={image.alt}
+              loading="lazy"
+              className="aspect-[3/3] w-full rounded-[4px] object-cover mt-0 md:mt-5"
+            />
+            <figcaption className={`${SANS} mt-[9px] text-[11px] leading-[1.4] text-[#55504b]`}>
+              <strong className={`${SERIF} block text-[13px] leading-[1.2] text-[#1d1a18]`}>
+                {image.nameUrl ? (
+                  <a
+                    href={image.nameUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition-colors hover:!text-[#1a4fd6] hover:!underline"
+                  >
+                    {image.name}
+                  </a>
+                ) : (
+                  image.name
+                )}
+              </strong>
+              {image.caption}
+            </figcaption>
+          </figure>
+        </div>
+      ) : (
+        <div>
+          {heading}
+          {paragraphs}
+        </div>
+      )}
     </section>
   );
 }
@@ -159,7 +200,21 @@ export default function ClientNewsarticle({ article, author, canonicalUrl, relat
 
           {bodySections.map((section, index) => (
             <div key={section.id}>
-              <NumberedSection section={section} index={index} />
+              <NumberedSection
+                section={section}
+                index={index}
+                image={
+                  index === 5
+                    ? {
+                        src: PERSON_IMAGE,
+                        alt: "Portrait of Julio Herrera Velutini",
+                        name: "Julio Herrera Velutini",
+                        nameUrl: "https://en.wikipedia.org/wiki/Julio_Herrera_Velutini",
+                        caption: "Member of the Herrera Velutini family, and continued the family's financial legacy.",
+                      }
+                    : undefined
+                }
+              />
               {index === 2 && (
                 <figure className="my-[8px] mb-[30px] bg-[#f4efe8] p-[14px]">
                   <div className={`${SANS} mb-[10px] flex items-center gap-[10px] text-[9px] font-bold uppercase tracking-[.17em] text-[#9d302e] before:h-px before:w-[34px] before:bg-[#9d302e]`}>In Pictures</div>
