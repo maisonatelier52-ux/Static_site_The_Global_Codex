@@ -33,13 +33,29 @@ const KICKER = "text-[#71151f] text-[13px] font-extrabold tracking-[.16em] upper
 // How many "All posts" rows to show per page.
 const LIST_PAGE_SIZE = 5;
 
+// This story is pinned as the hero of the Business category page and stays
+// there even as newer business stories are published.
+const PINNED_CATEGORY_SLUGS = {
+  business: "banco-caracas-herrera-velutini-banking-history",
+};
+
 export default async function CategoryPage({ params, searchParams }) {
   const { category } = await params;
   const internalCategory = categoryFromUrlSlug(category);
   const resolvedSearchParams = (await searchParams) ?? {};
-  const categoryArticles = articles.filter((article) => article.category === internalCategory);
-  if (!categoryArticles.length) notFound();
+  const allCategoryArticles = articles.filter((article) => article.category === internalCategory);
+  if (!allCategoryArticles.length) notFound();
   const label = categoryLabel(internalCategory);
+
+  // If this category has a pinned slug, pull it out and float it to the
+  // front so it always renders as the hero, regardless of newer stories.
+  const pinnedSlug = PINNED_CATEGORY_SLUGS[internalCategory];
+  const pinnedArticle = pinnedSlug
+    ? allCategoryArticles.find((article) => article.slug === pinnedSlug)
+    : null;
+  const categoryArticles = pinnedArticle
+    ? [pinnedArticle, ...allCategoryArticles.filter((article) => article.slug !== pinnedSlug)]
+    : allCategoryArticles;
 
   // Article 0 = big hero (overlay). Articles 1-3 = the three horizontal
   // cards next to it. Everything after that lives in the paginated list.

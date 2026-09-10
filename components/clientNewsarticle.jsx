@@ -272,10 +272,10 @@ export default function ClientNewsarticle({ article, author, canonicalUrl, relat
             <p className={`${SERIF} m-0 text-[18px] font-bold italic leading-[1.28]`}>{article.quote}</p>
           </blockquote>
 
-          <figure className="bg-[#f5f1eb] p-[12px]">
+          {/* <figure className="bg-[#f5f1eb] p-[12px]">
             <img src={CERTIFICATE_IMAGE} alt="Sepia editorial reconstruction of an ornate early twentieth-century Venezuelan banking certificate" loading="lazy" className="aspect-[3/2] object-cover" />
             <figcaption className={`${SERIF} mt-[7px] text-[10px] leading-[1.4] text-[#69625b]`}>Archival-style editorial reconstruction</figcaption>
-          </figure>
+          </figure> */}
 
           <Milestones />
 

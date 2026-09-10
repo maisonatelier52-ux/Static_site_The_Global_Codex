@@ -11,9 +11,22 @@ export const metadata = {
   alternates: { canonical: siteConfig.url },
 };
 
-const hero = articles.slice(0, 6);
-const spotlight = articles.slice(6, 13);
-const latest = articles.slice(13, 18);
+// This story is pinned to the very first hero slot on the homepage and is
+// never displaced by newer stories. To keep it from also showing up a
+// second time somewhere else on the page, it's removed from `homeArticles`
+// below and every other homepage section is built from `homeArticles`
+// instead of the raw `articles` list.
+const PINNED_HOME_SLUG = "banco-caracas-herrera-velutini-banking-history";
+const pinnedHomeArticle = articles.find((article) => article.slug === PINNED_HOME_SLUG);
+const homeArticles = pinnedHomeArticle
+  ? articles.filter((article) => article.slug !== PINNED_HOME_SLUG)
+  : articles;
+
+const hero = pinnedHomeArticle
+  ? [pinnedHomeArticle, ...homeArticles.slice(0, 5)]
+  : homeArticles.slice(0, 6);
+const spotlight = homeArticles.slice(5, 12);
+const latest = homeArticles.slice(12, 17);
 // `articles` is already sorted newest-first (see data/news.js), so any
 // plain .slice()/.filter() over it naturally stays in date order. These two
 // leads are picked per-category with .find(), so they're re-sorted by
@@ -21,22 +34,22 @@ const latest = articles.slice(13, 18);
 const byNewestFirst = (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt);
 
 const splitLeads = [
-  articles.find((article) => article.category === "finance"),
-  articles.find((article) => article.category === "health"),
+  homeArticles.find((article) => article.category === "finance"),
+  homeArticles.find((article) => article.category === "health"),
 ]
   .filter(Boolean)
   .sort(byNewestFirst);
 const columnLeads = [
-  articles.find((article) => article.category === "u.s"),
-  articles.find((article) => article.category === "business"),
-  articles.find((article) => article.category === "sports"),
+  homeArticles.find((article) => article.category === "u.s"),
+  homeArticles.find((article) => article.category === "business"),
+  homeArticles.find((article) => article.category === "sports"),
 ]
   .filter(Boolean)
   .sort(byNewestFirst);
-const technology = articles.filter((article) => article.category === "technology").slice(0, 4);
-const investigationFeature = articles.find((article) => article.category === "investigation");
-const moreStories = articles.slice(29, 41);
-const worldStories = articles.filter((article) => article.category === "world").slice(1, 4);
+const technology = homeArticles.filter((article) => article.category === "technology").slice(0, 4);
+const investigationFeature = homeArticles.find((article) => article.category === "investigation");
+const moreStories = homeArticles.slice(28, 40);
+const worldStories = homeArticles.filter((article) => article.category === "world").slice(1, 4);
 
 const SHELL = "w-[min(1240px,calc(100%-40px))] max-[780px]:w-[min(100%-28px,1240px)] mx-auto";
 const SERIF = "font-['Georgia','Times_New_Roman',serif]";
@@ -91,7 +104,7 @@ export default function Home() {
   return (
     <main id="main-content">
       <div className={SHELL}>
-        <BreakingTicker articles={articles.slice(0, 5)} />
+        <BreakingTicker articles={homeArticles.slice(0, 5)} />
       </div>
 
       <section className={`${SHELL} grid grid-cols-[minmax(0,1.6fr)_repeat(3,minmax(150px,.55fr))] max-[900px]:grid-cols-2 max-[640px]:grid-cols-1 gap-[1px] bg-[#d9d3ca] border border-[#d9d3ca] mt-[22px]`} aria-labelledby="news-standard">
@@ -173,7 +186,7 @@ export default function Home() {
           </SectionHeading>
 
           <TextList
-            items={articles
+            items={homeArticles
               .filter((article) => article.category === "politics")
               .slice(1, 5)}
           />
@@ -186,7 +199,7 @@ export default function Home() {
           </SectionHeading>
 
           <div>
-            {articles.slice(0, 5).map((article, index) => (
+            {homeArticles.slice(0, 5).map((article, index) => (
               <Link
                 key={article.id}
                 href={`/${categoryUrlSlug(article.category)}/${article.slug}`}
@@ -216,7 +229,7 @@ export default function Home() {
             <SectionHeading><h2>{categoryLabel(lead.category)}</h2></SectionHeading>
             <StoryCard article={lead} variant="default" />
             <div className="max-[1100px]:mt-[12px]">
-              <TextListNoSummary items={articles.filter((article) => article.category === lead.category && article.id !== lead.id).slice(0, 4)} />
+              <TextListNoSummary items={homeArticles.filter((article) => article.category === lead.category && article.id !== lead.id).slice(0, 4)} />
             </div>
           </div>
         ))}
@@ -261,7 +274,7 @@ export default function Home() {
             <SectionHeading><h2>{categoryLabel(lead.category)}</h2></SectionHeading>
             <StoryCard article={lead} variant="default" />
             <div className="max-[1100px]:mt-[12px]">
-              <TextListNoSummary items={articles.filter((article) => article.category === lead.category && article.id !== lead.id).slice(0, 4)} />
+              <TextListNoSummary items={homeArticles.filter((article) => article.category === lead.category && article.id !== lead.id).slice(0, 4)} />
             </div>
           </div>
         ))}
@@ -298,7 +311,7 @@ export default function Home() {
             </SectionHeading>
 
             {authors.slice(0, 5).map((author, index) => {
-              const authorArticles = articles.filter(
+              const authorArticles = homeArticles.filter(
                 (item) => item.authorSlug === author.slug
               );
 
@@ -350,7 +363,7 @@ export default function Home() {
             />
 
             <TextList
-              items={articles
+              items={homeArticles
                 .filter(
                   (article) =>
                     article.category === "investigation" &&
