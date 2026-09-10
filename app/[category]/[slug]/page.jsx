@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Newsletter } from "@/components/Newsletter";
 import { ShareRow } from "@/components/ShareRow";
 import { ArticleNav } from "@/components/ArticleNav";
+import ClientNewsarticle from "@/components/clientNewsarticle";
 import { articles, categoryFromUrlSlug, categoryLabel, categoryUrlSlug, formatDate, getAdjacentArticles, getArticle, getAuthor, timeAgo } from "@/data/news";
 import { siteConfig } from "@/lib/site";
 
@@ -70,6 +71,18 @@ export default async function ArticlePage({ params }) {
     citation: article.sources.map((sourceItem) => sourceItem.url),
     isAccessibleForFree: true,
   };
+
+  if (article.slug === "banco-caracas-herrera-velutini-banking-history") {
+    return (
+      <ClientNewsarticle
+        article={article}
+        author={author}
+        canonicalUrl={canonicalUrl}
+        related={related}
+        jsonLd={jsonLd}
+      />
+    );
+  }
 
   return (
     <main id="main-content" className="bg-white [&_h1]:font-['Georgia','Times_New_Roman',serif] [&_h1]:text-[#1a1a1a] [&_h2]:font-['Georgia','Times_New_Roman',serif] [&_h2]:text-[#1a1a1a] [&_h3]:font-['Georgia','Times_New_Roman',serif] [&_h3]:text-[#1a1a1a] px-6">
