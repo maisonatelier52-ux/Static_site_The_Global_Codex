@@ -73,12 +73,12 @@ function NumberedSection({ section, index }) {
   return (
     <section id={section.id} className="scroll-mt-[92px] border-t border-[#ece5dc] py-[30px] first:border-t-0 first:pt-0">
       <div>
-        <h2 className={`${SERIF} m-0 mb-[12px] flex items-baseline gap-[12px] text-[25px] font-bold leading-[1.16] text-[#171717] max-[560px]:text-[21px]`}>
+        <h2 className={`${SERIF} m-0 mb-[12px] flex items-baseline gap-[12px] text-[19px] font-bold leading-[1.16] text-[#171717] max-[560px]:text-[16px]`}>
           <span className={`${SERIF} text-[31px] leading-none text-[#c88f8b]`} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
           {section.heading}
         </h2>
         {section.blocks.map((block, blockIndex) => (
-          <p key={`${section.id}-${blockIndex}`} className={`${SERIF} m-0 mb-[14px] text-[16px] leading-[1.65] text-[#26211d] text-justify last:mb-0`}>{block.text}</p>
+          <p key={`${section.id}-${blockIndex}`} className={`${SERIF} m-0 mb-[14px] text-[14px] leading-[1.65] text-[#26211d] text-justify last:mb-0`}>{block.text}</p>
         ))}
       </div>
     </section>
@@ -153,7 +153,7 @@ export default function ClientNewsarticle({ article, author, canonicalUrl, relat
         <article className="min-w-0">
           <section className="mb-[25px]">
             {intro.blocks.map((block, index) => (
-              <p key={`intro-${index}`} className={`${SERIF} m-0 mb-[14px] text-[17px] leading-[1.66] text-[#25211e] text-justify first:first-letter:float-left first:first-letter:mr-[10px] first:first-letter:mt-[7px] first:first-letter:text-[76px] first:first-letter:font-bold first:first-letter:leading-[.72] first:first-letter:text-[#a52e2b]`}>{block.text}</p>
+              <p key={`intro-${index}`} className={`${SERIF} m-0 mb-[14px] text-[14px] leading-[1.66] text-[#25211e] text-justify first:first-letter:float-left first:first-letter:mr-[10px] first:first-letter:mt-[7px] first:first-letter:text-[56px] first:first-letter:font-bold first:first-letter:leading-[.72] first:first-letter:text-[#a52e2b]`}>{block.text}</p>
             ))}
           </section>
 
@@ -175,7 +175,7 @@ export default function ClientNewsarticle({ article, author, canonicalUrl, relat
           <blockquote className="my-[16px] border-l-[3px] border-[#a52e2b] bg-[#f5f1eb] px-[27px] py-[24px]">
             <span className={`${SERIF} mb-[2px] block text-[34px] font-bold leading-none text-[#a52e2b]`} aria-hidden="true">"</span>
             <p className={`${SERIF} m-0 text-[25px] font-bold italic leading-[1.3] text-[#181512]`}>{closingSection.heading}</p>
-            {closingSection.blocks.map((block, index) => <p key={`closing-${index}`} className={`${SERIF} m-0 mt-[13px] text-[16px] leading-[1.6] text-[#302a25] text-justify`}>{block.text}</p>)}
+            {closingSection.blocks.map((block, index) => <p key={`closing-${index}`} className={`${SERIF} m-0 mt-[13px] text-[14px] leading-[1.6] text-[#302a25] text-justify`}>{block.text}</p>)}
           </blockquote>
 
           {article.sources.length > 0 && (
