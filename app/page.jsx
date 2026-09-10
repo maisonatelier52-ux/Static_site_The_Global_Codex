@@ -29,7 +29,7 @@ const splitLeads = [
 const columnLeads = [
   articles.find((article) => article.category === "u.s"),
   articles.find((article) => article.category === "business"),
-  articles.find((article) => article.category === "sport"),
+  articles.find((article) => article.category === "sports"),
 ]
   .filter(Boolean)
   .sort(byNewestFirst);

@@ -112,7 +112,7 @@ const raw = {
     ["Hospitals Expand Partnerships as Financial Pressure Builds", "Reuters", "Regional systems are combining operations to manage labor, technology and capital costs."],
     ["CDC Updates Seasonal Flu Vaccine Guidance", "CDC", "The recommendations arrive ahead of the fall campaign and emphasize risk-based clinical decisions."],
   ],
-  sport: [
+  sports: [
     ["Carlos Alcaraz Returns to the U.S. Open With a Statement Win", "Yahoo Sports", "His opening performance reset expectations in a crowded men's draw."],
     ["Naomi Osaka Brings Confidence and Cultural Style Back to New York", "Yahoo Sports", "Her U.S. Open return blends competitive ambition with a carefully chosen tribute."],
     ["Taylor Fritz Opens the U.S. Open With American Hopes Rising", "Yahoo Sports", "The leading U.S. contender began with the composure expected of a home favorite."],
@@ -146,14 +146,14 @@ const illustrations = {
   technology: ["nvidia-earnings-ai-chip-demand-wall-street-expectations.webp","open-source-maintainers-push-for-safer-release-pipelines.webp","privacy-engineers-build-a-simpler-standard-for-consent.webp"],
   politics: ["senate-debate-puts-election-security-back-at-center-stage.webp","election-commission-publishes-new-audit-timetable.webp","good-policy-needs-better-feedback-loops.webp"],
   health: ["scientists-map-how-urban-trees-cool-entire-neighborhoods.webp","lab-team-finds-a-faster-route-to-recyclable-batteries.webp","citizen-scientists-build-a-continental-air-quality-map.webp"],
-  sport: ["national-team-qualifies-after-a-dramatic-final-minute-goal.webp","women-s-league-secures-landmark-broadcast-agreement.webp","rookie-captain-leads-a-historic-tournament-comeback.webp"],
+  sports: ["national-team-qualifies-after-a-dramatic-final-minute-goal.webp","women-s-league-secures-landmark-broadcast-agreement.webp","rookie-captain-leads-a-historic-tournament-comeback.webp"],
   investigation: ["international-operation-disrupts-a-credential-market.webp","researchers-trace-a-coordinated-attack-on-cloud-infrastructure.webp","why-public-trust-depends-on-showing-the-work.webp"],
 };
 
 const editors = {
   world: "security-diplomacy-editor", "u.s": "public-life-editor", business: "business-culture-editor",
   finance: "business-culture-editor", technology: "technology-science-editor", politics: "public-life-editor",
-  health: "technology-science-editor", sport: "business-culture-editor", investigation: "sources-standards-editor",
+  health: "technology-science-editor", sports: "business-culture-editor", investigation: "sources-standards-editor",
 };
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");

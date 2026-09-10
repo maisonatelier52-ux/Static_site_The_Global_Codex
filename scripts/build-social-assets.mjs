@@ -13,7 +13,7 @@ const cards = {
   technology: ["TECHNOLOGY", "Innovation, power and accountability"],
   politics: ["POLITICS", "Policy, elections and public institutions"],
   health: ["HEALTH", "Public health, medicine and access"],
-  sport: ["SPORT", "Competition, culture and the games that matter"],
+  sports: ["SPORTS", "Competition, culture and the games that matter"],
   investigation: ["INVESTIGATION", "Documents, oversight and public accountability"],
 };
 

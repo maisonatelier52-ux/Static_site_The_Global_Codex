@@ -7,7 +7,7 @@ import { articles, categories } from "../data/news.js";
 import { navCategories, siteConfig } from "../lib/site.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const required = ["world", "u.s", "business", "finance", "technology", "politics", "health", "sport", "investigation"];
+const required = ["world", "u.s", "business", "finance", "technology", "politics", "health", "sports", "investigation"];
 
 test("publishes exactly ten stories in each requested section", () => {
   assert.deepEqual([...categories].sort(), [...required].sort());

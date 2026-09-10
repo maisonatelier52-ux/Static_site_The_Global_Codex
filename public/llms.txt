@@ -2,7 +2,7 @@
 
 > Independent news for an informed America.
 
-BusinessStandard.org is an independent U.S.-focused news publication covering World, U.S., Business, Finance, Technology, Politics, Health, Sport and Investigation.
+BusinessStandard.org is an independent U.S.-focused news publication covering World, U.S., Business, Finance, Technology, Politics, Health, Sports and Investigation.
 
 ## Important content note
 
@@ -17,7 +17,7 @@ Posts synthesize publicly available records, research and reputable coverage. Th
 - /technology
 - /politics
 - /health
-- /sport
+- /sports
 - /investigation
 - /about
 - /editorial-standards
